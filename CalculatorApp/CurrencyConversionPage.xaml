@@ -1,0 +1,107 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculatorApp.CurrencyConversionPage"
+             Title="Currency Coversion Calculator">
+<!-- complies and runs well in both Windows and Android. No errors. No issues -->
+    
+    <ScrollView>
+        <Grid>
+            <StackLayout x:Name="MainLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                
+                <!-- create a grid for the top row - display area (no column) -->
+                <Grid x:Name="TopGrid" RowDefinitions ="250, auto" Padding="8" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label x:Name="widthDisplay" HorizontalOptions="Center"/>
+                    <Label x:Name="heightDisplay"  HorizontalOptions="Center"/>
+
+                    <!-- create a border -->
+                    <Border BackgroundColor="DarkSeaGreen" Padding="8">
+                        <Grid Padding="10" HorizontalOptions="Fill" VerticalOptions="Center" RowSpacing="10" ColumnSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- create dropdown buttons -->
+                            <Button x:Name="FromCurrencyBtn" Clicked="FromCurrencyBtn_Clicked" Text="Euro" TextColor="Red" FontSize="20" BackgroundColor="AliceBlue" WidthRequest="285" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" VerticalOptions="Start"/>
+
+                            <Label Text="to" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+
+                            <Button x:Name="ToCurrencyBtn" Clicked="ToCurrencyBtn_Clicked" Text="Pound" TextColor="Red" FontSize="20" BackgroundColor="AliceBlue" WidthRequest="285" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0" VerticalOptions="Start"/>
+
+                            <Entry x:Name="UserInput" Placeholder="Input" TextChanged="UserInput_TextChanged" Grid.Row="0" Grid.Column="1" WidthRequest="80" HorizontalOptions="Center" FontSize="20" VerticalOptions="Center" Keyboard="Numeric"/>
+
+                            <Label Text="=" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+
+                            <Label x:Name="ConversionResult" Text="Output" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" FontAttributes="Bold"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- create another grid for the rows and columns -->
+                    <Grid x:Name="GridPageContent" Grid.Row="1" RowDefinitions="*, *, *, *, *" ColumnDefinitions="*, *, *" RowSpacing="5" BackgroundColor="CadetBlue" Padding="8">
+
+                        <!-- create buttons -->
+                        <!-- clear -->
+                        <Button x:Name="clear" Clicked="clear_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="82" WidthRequest="82"  Text="C" TextColor="Red" FontSize="25" BackgroundColor="LightSteelBlue" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- seven -->
+                        <Button x:Name="seven" Clicked="number_Clicked" Grid.Row="1" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="7" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- eight -->
+                        <Button x:Name="eight" Clicked="number_Clicked" Grid.Row="1" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="8" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- nine -->
+                        <Button x:Name="nine" Clicked="number_Clicked" Grid.Row="1" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="9" TextColor="Red"  FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- four -->
+                        <Button x:Name="four" Clicked="number_Clicked" Grid.Row="2" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="4" TextColor="Red" FontSize="25"  BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- five -->
+                        <Button x:Name="five" Clicked="number_Clicked" Grid.Row="2" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="5" TextColor="Red"  FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- six -->
+                        <Button x:Name="six" Clicked="number_Clicked" Grid.Row="2" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="6" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold"  CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- one -->
+                        <Button x:Name="one" Clicked="number_Clicked" Grid.Row="3" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="1" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- two -->
+                        <Button x:Name="two" Clicked="number_Clicked"  Grid.Row="3" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="2"  TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- three -->
+                        <Button x:Name="three" Clicked="number_Clicked" Grid.Row="3" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="3" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- decimal -->
+                        <Button x:Name="decimal" Clicked="decimal_Clicked" Grid.Row="4" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="." TextColor="Red" FontSize="40"  BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- zero -->
+                        <Button x:Name="zero" Clicked="number_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="0" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- delete -->
+                        <Button x:Name="delete" Clicked="delete_Clicked" Grid.Row="4" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="DEL" TextColor="Red" FontSize="25" BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                    </Grid>
+                </Grid>
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="575" Text="1EURO = 0.83POUND, 1.08USD, 1.51CAD, 300.07PKR, 90.89INR, 3.97AED, 0.94franc" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1POUND = 1.20EURO, 1.29USD, 1.81CAD, 361.07PKR, 109.32INR, 4.78AED, 1.13CHF" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1USD = 0.92EURO, 0.78POUND, 1.39CAD, 277.7PKR, 84.06INR, 3.67AED, 0.87CHF" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1CAD = 0.66EURO, 0.55POUND, 0.72USD, 199.48, 60.38INR, 2.64AED, 0.62CHF" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1PKR = 0.0033EURO, 0.0028POUND, 0.0036USD, 0.0050CAD, 0.30INR, 0.013AED, 0.0031CHF" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1INR = 0.011EURO, 0.0091POUND, 0.012USD, 0.017CAD, 3.30PKR, 0.044AED, 0.01CHF"  Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1AED = 0.25EURO, 0.21POUND, 0.27USD, 0.38CAD, 75.61PKR, 22.89INR, 0.24CHF" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1CHF = 1.07EURO, 0.89POUND, 1.15USD, 1.6CAD, 319.82PKR, 96.88INR, 4.23AED" Margin="0, 10, 0, 0"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

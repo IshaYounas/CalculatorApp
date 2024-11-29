@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculatorApp.MainPage"
+             Title="My Calculator App">
+    <!-- complies and runs well in both Windows and Android. No errors. No issues -->
+    
+    <ScrollView>
+            <Grid>
+            <StackLayout x:Name="MainLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                
+                <!-- create a grid for the top row - display area (no column) -->
+                <Grid x:Name="TopGrid" RowDefinitions ="250, auto" Padding="8" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label x:Name="widthDisplay" HorizontalOptions="Center"/>
+                    <Label x:Name="heightDisplay"  HorizontalOptions="Center"/>
+
+                    <!-- create a border -->
+                    <Border BackgroundColor="DarkSeaGreen" Padding="8">
+                        <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center" Padding="10">
+                            <Entry x:Name="Input"  TextColor="Chocolate" FontSize="30" Placeholder="Input" PlaceholderColor="BurlyWood" HorizontalTextAlignment="End"/>
+                            <Label x:Name="Result" TextColor="Chocolate" FontSize="35"  HorizontalTextAlignment="End"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- History Button -->
+                    <Button x:Name="History" Clicked="History_Clicked" Text="History" HeightRequest="40" WidthRequest="80" BackgroundColor="Coral" VerticalOptions="Start" HorizontalOptions="Start" Margin="10" TextColor="BlanchedAlmond" FontAttributes="Bold"/>
+
+                    <!-- create button for conversion -->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="End" Padding="10, 0, 0, 10" Spacing="10">
+
+                        <!-- Units -->
+                        <Button Text="Units" Clicked="Units_Clicked" WidthRequest="100" HeightRequest="40" BackgroundColor="LightGreen" TextColor="Red" FontAttributes="Bold"/>
+
+                        <!-- Currency -->
+                        <Button Text="Currency" Clicked="Currency_Clicked" WidthRequest="100" HeightRequest="40" BackgroundColor="LightGreen" TextColor="Red" FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <!-- create another grid for the rows and columns -->
+                    <Grid x:Name="GridPageContent" Grid.Row="1" RowDefinitions="*, *, *, *, *" ColumnDefinitions="*, *, *, *" RowSpacing="10" ColumnSpacing="10" BackgroundColor="CadetBlue" Padding="8">
+
+                        <!-- create buttons -->
+                        <!-- clear -->
+                        <Button x:Name="clear" Clicked="clear_Clicked" Grid.Row="0" Grid.Column="0" HeightRequest="82" WidthRequest="82"  Text="C" TextColor="Red" FontSize="25" BackgroundColor="LightSteelBlue" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- square root -->
+                        <Button x:Name="sqroot" Clicked="sqroot_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="√" TextColor="Red" FontSize="35" BackgroundColor="Cornsilk"  FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- modulus -->
+                        <Button x:Name="modulus" Clicked="modulus_Clicked" Grid.Row="0" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="%" TextColor="Red" FontSize="25" BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- divide -->
+                        <Button x:Name="divide" Clicked="operation_Clicked" Grid.Row="0" Grid.Column="3" HeightRequest="82" WidthRequest="82" Text="÷" TextColor="Red" FontSize="48" BackgroundColor="Bisque" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- seven -->
+                        <Button x:Name="seven" Clicked="num_Clicked" Grid.Row="1" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="7" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- eight -->
+                        <Button x:Name="eight" Clicked="num_Clicked" Grid.Row="1" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="8" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- nine -->
+                        <Button x:Name="nine" Clicked="num_Clicked" Grid.Row="1" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="9" TextColor="Red"  FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- multiply -->
+                        <Button x:Name="multiply" Clicked="operation_Clicked" Grid.Row="1" Grid.Column="3" HeightRequest="82" WidthRequest="82" Text="x" TextColor="Red" FontSize="40" BackgroundColor="Bisque" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- four -->
+                        <Button x:Name="four" Clicked="num_Clicked" Grid.Row="2" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="4" TextColor="Red" FontSize="25"  BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- five -->
+                        <Button x:Name="five" Clicked="num_Clicked" Grid.Row="2" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="5" TextColor="Red"  FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- six -->
+                        <Button x:Name="six" Clicked="num_Clicked" Grid.Row="2" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="6" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold"  CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- minus -->
+                        <Button x:Name="minus" Clicked="operation_Clicked" Grid.Row="2" Grid.Column="3" HeightRequest="82" WidthRequest="82" Text="-" TextColor="Red" FontSize="50" BackgroundColor="Bisque" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- one -->
+                        <Button x:Name="one" Clicked="num_Clicked" Grid.Row="3" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="1" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- two -->
+                        <Button x:Name="two" Clicked="num_Clicked"  Grid.Row="3" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="2"  TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- three -->
+                        <Button x:Name="three" Clicked="num_Clicked" Grid.Row="3" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="3" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- addition -->
+                        <Button x:Name="addition" Clicked="operation_Clicked" Grid.Row="3" Grid.Column="3" HeightRequest="82" WidthRequest="82" Text="+" TextColor="Red" FontSize="40" BackgroundColor="Bisque"  FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- decimal -->
+                        <Button x:Name="decimal" Clicked="decimal_Clicked" Grid.Row="4" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="." TextColor="Red" FontSize="40"  BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- zero -->
+                        <Button x:Name="zero" Clicked="num_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="0" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- delete -->
+                        <Button x:Name="delete" Clicked="delete_Clicked" Grid.Row="4" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="DEL" TextColor="Red" FontSize="25" BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- equals -->
+                        <Button x:Name="equal" Clicked="equal_Clicked" Grid.Row="4" Grid.Column="3" HeightRequest="82" WidthRequest="82" Text="=" TextColor="Red" FontSize="40" BackgroundColor="Aquamarine" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

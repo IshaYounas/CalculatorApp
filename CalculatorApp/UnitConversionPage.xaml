@@ -1,0 +1,107 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculatorApp.UnitConversionPage"
+             Title="Unit Conversion Calculator">
+    <!-- complies and runs well in both Windows and Android. No errors. No issues -->
+    
+    <ScrollView>
+        <Grid>
+            <StackLayout x:Name="MainLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                
+                <!-- create a grid for the top row - display area (no column) -->
+                <Grid x:Name="TopGrid" RowDefinitions ="250, auto" Padding="8" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label x:Name="widthDisplay" HorizontalOptions="Center"/>
+                    <Label x:Name="heightDisplay"  HorizontalOptions="Center"/>
+                    
+                    <!-- create a border -->
+                    <Border BackgroundColor="DarkSeaGreen" Padding="8">
+                        <Grid Padding="10" HorizontalOptions="Fill" VerticalOptions="Center" RowSpacing="15" ColumnSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- create dropdown buttons -->
+                            <Button x:Name="FromUnitBtn" Clicked="FromUnitBtn_Clicked" Text="Meter" TextColor="Red" FontSize="20" BackgroundColor="AliceBlue" WidthRequest="180" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+
+                            <Label Text="to" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+
+                            <Button x:Name="ToUnitBtn" Clicked="ToUnitBtn_Clicked" Text="Kilometer" TextColor="Red" FontSize="20" BackgroundColor="AliceBlue" WidthRequest="180" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0"/>
+
+                            <Entry x:Name="UserInput" Placeholder="Input" TextChanged="UserInput_TextChanged" Grid.Row="0" Grid.Column="1" WidthRequest="80" HorizontalOptions="Center" FontSize="20" Keyboard="Numeric"/>
+
+                            <Label Text="=" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+
+                            <Label x:Name="ConversionResult" Text="Output" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" FontAttributes="Bold"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- create another grid for the rows and columns -->
+                    <Grid x:Name="GridPageContent" Grid.Row="1" RowDefinitions="*, *, *, *, *" ColumnDefinitions="*, *, *" RowSpacing="5" BackgroundColor="CadetBlue" Padding="8">
+
+                        <!-- create buttons -->
+                        <!-- clear -->
+                        <Button x:Name="clear" Clicked="clear_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="82" WidthRequest="82"  Text="C" TextColor="Red" FontSize="25" BackgroundColor="LightSteelBlue" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+               
+                        <!-- seven -->
+                        <Button x:Name="seven" Clicked="number_Clicked" Grid.Row="1" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="7" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- eight -->
+                        <Button x:Name="eight" Clicked="number_Clicked" Grid.Row="1" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="8" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- nine -->
+                        <Button x:Name="nine" Clicked="number_Clicked" Grid.Row="1" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="9" TextColor="Red"  FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- four -->
+                        <Button x:Name="four" Clicked="number_Clicked" Grid.Row="2" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="4" TextColor="Red" FontSize="25"  BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- five -->
+                        <Button x:Name="five" Clicked="number_Clicked" Grid.Row="2" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="5" TextColor="Red"  FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- six -->
+                        <Button x:Name="six" Clicked="number_Clicked" Grid.Row="2" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="6" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold"  CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- one -->
+                        <Button x:Name="one" Clicked="number_Clicked" Grid.Row="3" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="1" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- two -->
+                        <Button x:Name="two" Clicked="number_Clicked"  Grid.Row="3" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="2"  TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- three -->
+                        <Button x:Name="three" Clicked="number_Clicked" Grid.Row="3" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="3" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- decimal -->
+                        <Button x:Name="decimal" Clicked="decimal_Clicked" Grid.Row="4" Grid.Column="0" HeightRequest="82" WidthRequest="82" Text="." TextColor="Red" FontSize="40"  BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- zero -->
+                        <Button x:Name="zero" Clicked="number_Clicked" Grid.Row="4" Grid.Column="1" HeightRequest="82" WidthRequest="82" Text="0" TextColor="Red" FontSize="25" BackgroundColor="Khaki" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+                        <!-- delete -->
+                        <Button x:Name="delete" Clicked="delete_Clicked" Grid.Row="4" Grid.Column="2" HeightRequest="82" WidthRequest="82" Text="DEL" TextColor="Red" FontSize="25" BackgroundColor="Cornsilk" FontAttributes="Bold" CornerRadius="55" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                    </Grid>
+                </Grid>
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="575" Text="1m = 0.001km, 100cm, 1000mm, 0.000621371mi, 1.09361yd, 3.28084ft, 39.3701inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1km = 1000m, 100000cm, 1000000mm, 0.621371mi, 1093.61yd, 3280.84ft, 39370.1inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1cm = 0.01m, 0.00001km, 10mm, 0.0000062137mi, 0.0109361yd, 0.0328084ft, 0.393701inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1mm = 0.001m, 0.000001km, 0.1cm, 0.000000621371mi, 0.00109361yd, 0.00328084ft, 0.0393701inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1mi = 1609.34m, 1.60934km, 160934cm, 1609340mm, 1760yd, 5280ft, 63360inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1yd = 0.9144m, 0.0009144km, 91.44cm, 914.4mm, 0.000568182mi, 3ft, 36inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1ft = 0.3048m, 0.0003048km, 30.48cm, 304.8mm, 0.000189394mi, 0.333333yd, 12inch" Margin="0, 10, 0, 0"/>
+
+                <Button BackgroundColor="AntiqueWhite" CornerRadius="10" HeightRequest="10" WidthRequest="585" Text="1inch = 0.0254m, 0.0000254km, 2.54cm, 25.4mm, 0.0000157828mi, 0.0277778yd, 0.0833333ft" Margin="0, 10, 0, 0"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
